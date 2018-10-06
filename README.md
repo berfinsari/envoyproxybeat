@@ -1,15 +1,91 @@
 # Envoyproxybeat
 
-Welcome to Envoyproxybeat.
+Envoyproxybeat is an [Elastic Beat](https://www.elastic.co/products/beats) that collects metrics from Envoy Proxy and indexes them into Elasticsearch or Logstash.
+
+## Description
+
+> [Envoy Proxy](https://www.envoyproxy.io/docs/envoy/latest/intro/what_is_envoy) is an L7 proxy and communication bus designed for large modern service-oriented architectures.
+
+## Configuration
+
+Adjust the `envoyproxybeat.yml` configuration file to your needs.
+
+### `period`
+Defines how often to take traceroute output. Default to `30` s.
+
+### `port`
+Defines the envoy proxy port serviced. Default to `:9901`
+
+### `host`
+Host name of ElasticSearch. Default to `localhost` 
+
+## Document Example
+
+<pre>
+
+  "server": [
+    "filesystem": {
+      "reopen_failed": 0,
+      "write_buffered": 24,
+      "write_completed": 24,
+      "write_total_buffered": 0,
+      "flushed_by_timer": 447
+    },
+    "runtime": {
+      "num_keys": 0,
+      "override_dir_exists": 0,
+      "override_dir_not_exists": 0,
+      "admin_overrides_active": 0,
+      "load_error": 0,
+      "load_success": 0
+    },
+    "listener_manager": {
+      "listener_added": 1,
+      "listener_create_failure": 0,
+      "listener_create_success": 4,
+      "listener_modified": 0,
+      "listener_removed": 0,
+      "total_listeners_active": 1,
+      "total_listeners_draining": 0,
+      "total_listeners_warming": 0
+    },
+    "stats": {
+      "overflow": 0
+    },
+    "server": {
+      "hot_restart_epoch": 0,
+      "memory_allocated": 3168120,
+      "version": 4151803,
+      "live": 1,
+      "watchdog_miss": 0,
+      "days_until_first_cert_expiring": 2147483647,
+      "parent_connections": 0,
+      "watchdog_mega_miss": 0,
+      "memory_heap_size": 4194304,
+      "total_connections": 0,
+      "uptime": 4506
+    },
+    "http2": {},
+    "cluster_manager": {
+      "active_clusters": 1,
+      "cluster_added": 1,
+      "cluster_modified": 0,
+      "cluster_removed": 0,
+      "warming_clusters": 0
+    }
+  ],
+  "type": "envoyproxybeat"
+}
+</pre>
+
+## Getting Started with Envoyproxybeat
 
 Ensure that this folder is at the following location:
 `${GOPATH}/src/github.com/berfinsari/envoyproxybeat`
 
-## Getting Started with Envoyproxybeat
-
 ### Requirements
 
-* [Golang](https://golang.org/dl/) 1.7
+* [Golang](https://golang.org/dl/) 1.11
 
 ### Init Project
 To get running with Envoyproxybeat and also install the
@@ -115,3 +191,7 @@ make release
 ```
 
 This will fetch and create all images required for the build process. The whole process to finish can take several minutes.
+
+## License
+Covered under the Apache License, Version 2.0
+Copyright (c) 2018 Berfin Sarı
