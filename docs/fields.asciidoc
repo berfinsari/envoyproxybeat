@@ -2035,14 +2035,437 @@ Minor version of the operating system.
 None
 
 
-*`counter`*::
+[float]
+== server fields
+
+Contains server statistics.    
+
+
+
+
+*`server.cluster_manager.active_clusters`*::
 +
 --
-type: long
+type: int
 
-required: True
+Number of currently active (warmed) clusters.
 
-PLEASE UPDATE DOCUMENTATION
+
+--
+
+*`server.cluster_manager.cluster_added`*::
++
+--
+type: int
+
+Total clusters added (either via static config or CDS)
+
+
+--
+
+*`server.cluster_manager.cluster_modified`*::
++
+--
+type: int
+
+Total clusters modified (via CDS)
+
+
+--
+
+*`server.cluster_manager.cluster_removed`*::
++
+--
+type: int
+
+Total clusters removed (via CDS)
+
+
+--
+
+*`server.cluster_manager.warming_clusters`*::
++
+--
+type: int
+
+Number of currently warming (not active) clusters
+
+
+--
+
+
+*`server.filesystem.flushed_by_timer`*::
++
+--
+type: int
+
+Total number of times internal flush buffers are written to a file due to flush timeout.
+
+
+--
+
+*`server.filesystem.reopen_failed`*::
++
+--
+type: int
+
+Total number of times a file was failed to be opened.
+
+
+--
+
+*`server.filesystem.write_buffered`*::
++
+--
+type: int
+
+Total number of times file data is moved to Envoys internal flush buffer.
+
+
+--
+
+*`server.filesystem.write_completed`*::
++
+--
+type: int
+
+Total number of times a file was written.
+
+
+--
+
+*`server.filesystem.write_total_buffered`*::
++
+--
+type: int
+
+Current total size of internal flush buffer in bytes.
+
+
+--
+
+
+*`server.runtime.load_error`*::
++
+--
+type: int
+
+Total number of load attempts that resulted in an error.
+
+
+--
+
+*`server.runtime.load_success`*::
++
+--
+type: int
+
+Total number of load attempts that were successful.
+
+
+--
+
+*`server.runtime.num_keys`*::
++
+--
+type: int
+
+Number of keys currently loaded.
+
+
+--
+
+*`server.runtime.override_dir_exists`*::
++
+--
+type: int
+
+Total number of loads that did use an override directory.
+
+
+--
+
+*`server.runtime.override_dir_not_exists`*::
++
+--
+type: int
+
+Total number of loads that did not use an override directory.
+
+
+--
+
+*`server.runtime.admin_overrides_active`*::
++
+--
+type: int
+
+--
+
+
+*`server.listener_manager.listener_added`*::
++
+--
+type: int
+
+Total listeners added (either via static config or LDS)
+
+
+--
+
+*`server.listener_manager.listener_create_failure`*::
++
+--
+type: int
+
+Total failed listener object additions to workers.
+
+
+--
+
+*`server.listener_manager.listener_create_success`*::
++
+--
+type: int
+
+Total listener objects successfully added to workers.
+
+
+--
+
+*`server.listener_manager.listener_modified`*::
++
+--
+type: int
+
+Total listeners modified (via LDS)
+
+
+--
+
+*`server.listener_manager.listener_removed`*::
++
+--
+type: int
+
+Total listeners removed (via LDS)
+
+
+--
+
+*`server.listener_manager.total_listeners_active`*::
++
+--
+type: int
+
+Number of currently active listeners.
+
+
+--
+
+*`server.listener_manager.total_listeners_draining`*::
++
+--
+type: int
+
+Number of currently draining listeners.
+
+
+--
+
+*`server.listener_manager.total_listeners_warming`*::
++
+--
+type: int
+
+Number of currently warming listeners.
+
+
+--
+
+
+*`server.stats.overflow`*::
++
+--
+type: int
+
+Total number of times Envoy cannot allocate a statistic due to a shortage of shared memory.
+
+
+--
+
+
+*`server.server.days_until_first_cert_expiring`*::
++
+--
+type: int
+
+Number of days until the next certificate being managed will expire.
+
+
+--
+
+*`server.server.live`*::
++
+--
+type: int
+
+1 if the server is not currently draining, 0 otherwise
+
+
+--
+
+*`server.server.memory_allocated`*::
++
+--
+type: int
+
+Current amount of allocated memory in bytes.     
+
+
+--
+
+*`server.server.memory_heap_size`*::
++
+--
+type: int
+
+Current reserved heap size in bytes.
+
+
+--
+
+*`server.server.parent_connections`*::
++
+--
+type: int
+
+Total connections of the old Envoy process on hot restart.
+
+
+--
+
+*`server.server.total_connections`*::
++
+--
+type: int
+
+Total connections of both new and old Envoy processes.
+
+
+--
+
+*`server.server.uptime`*::
++
+--
+type: int
+
+Current server uptime in seconds.
+
+
+--
+
+*`server.server.version`*::
++
+--
+type: int
+
+Integer represented version number based on SCM revision.
+
+
+--
+
+*`server.server.watchdog_mega_miss`*::
++
+--
+type: int
+
+--
+
+*`server.server.watchdog_miss`*::
++
+--
+type: int
+
+--
+
+*`server.server.hot_restart_epoch`*::
++
+--
+type: int
+
+Current hot restart epoch.
+
+
+--
+
+
+*`server.http2.header_overflow`*::
++
+--
+type: int
+
+Total number of connections reset due to the headers being larger than 63k
+
+
+--
+
+*`server.http2.headers_cb_no_stream`*::
++
+--
+type: int
+
+Total number of errors where a header callback is called without an associated stream. This tracks an unexpected occurrence due to an as yet undiagnosed bug.
+
+
+--
+
+*`server.http2.rx_messaging_error`*::
++
+--
+type: int
+
+Total number of invalid received frames that violated section 8 of the HTTP/2 spec. This will result in a tx_reset
+
+
+--
+
+*`server.http2.rx_reset`*::
++
+--
+type: int
+
+Total number of reset stream frames received by Envoy.
+
+
+--
+
+*`server.http2.too_many_header_frames`*::
++
+--
+type: int
+
+Total number of times an HTTP2 connection is reset due to receiving too many headers frames. Envoy currently supports proxying at most one header frame for 100-Continue one non-100 response code header frame and one frame with trailers.
+
+
+--
+
+*`server.http2.trailers`*::
++
+--
+type: int
+
+Total number of trailers seen on requests coming from downstream.
+
+
+--
+
+*`server.http2.tx_reset`*::
++
+--
+type: int
+
+Total number of reset stream frames transmitted by Envoy.
 
 
 --
